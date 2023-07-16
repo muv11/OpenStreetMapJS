@@ -67,3 +67,42 @@ circleDrawControl = function(opt_options) {
     });
 }
 ol.inherits(circleDrawControl, ol.control.Control);
+
+exportJsonControl = function(opt_options) {
+    const button = document.createElement('button');
+    button.innerHTML = '<img src="http://' + ipUrl + '/images/download.png" alt="Export JSON" width="16" height="16">';
+    const element = document.createElement('div');
+    element.id = 'exportJsonBtn';
+    element.className = 'export-json ol-unselectable ol-control';
+    element.appendChild(button);
+    ol.control.Control.call(this, {
+        element: element
+    });
+}
+ol.inherits(exportJsonControl, ol.control.Control);
+
+importJsonControl = function(opt_options) {
+    const button = document.createElement('button');
+    button.innerHTML = '<img src="http://' + ipUrl + '/images/upload.png" alt="Import JSON" width="16" height="16">';
+    const element = document.createElement('div');
+    element.id = 'importJsonBtn';
+    element.className = 'import-json ol-unselectable ol-control';
+    element.appendChild(button);
+    ol.control.Control.call(this, {
+        element: element
+    });
+}
+ol.inherits(importJsonControl, ol.control.Control);
+
+saveDrawControl = function(opt_options) {
+    const button = document.createElement('button');
+    button.innerHTML = '<img src="http://' + ipUrl + '/images/save.png" alt="Save" width="16" height="16">';
+    const element = document.createElement('div');
+    element.id = 'saveBtn';
+    element.className = 'save ol-unselectable ol-control';
+    element.appendChild(button);
+    ol.control.Control.call(this, {
+        element: element
+    });
+}
+ol.inherits(saveDrawControl, ol.control.Control);
