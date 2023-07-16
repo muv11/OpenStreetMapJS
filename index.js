@@ -3,13 +3,25 @@ let vectorLayer = new ol.layer.Vector({
     source: source
 });
 
+const noneControl = new noneDrawControl;
+const pointControl = new pointDrawControl;
+const lineControl = new lineStringDrawControl;
+const polygonControl = new polygonDrawControl;
+const circleControl = new circleDrawControl;
+
 mapControls = [
     new ol.control.ScaleLine(),
     new ol.control.Zoom(),
     new ol.control.FullScreen(),
     new ol.control.Rotate(),
     new ol.control.ZoomSlider(),
-    new ol.control.ZoomToExtent()
+    new ol.control.ZoomToExtent(),
+
+    noneControl,
+    pointControl,
+    lineControl,
+    polygonControl,
+    circleControl
 ];
 
 let map = new ol.Map({
@@ -28,3 +40,28 @@ let map = new ol.Map({
     })
 });
 
+let draw;
+function addInteraction(element) {
+    let value = element.value;
+    if (value !== 'None') {
+        draw = new ol.interaction.Draw({
+            source: source,
+            type: value
+        });
+        map.addInteraction(draw);
+    }
+}
+
+function handleBtnClick() {
+    let element = this;
+    map.removeInteraction(draw);
+    addInteraction(element);
+}
+
+document.getElementById("None").addEventListener('click', handleBtnClick);
+document.getElementById("Point").addEventListener('click', handleBtnClick);
+document.getElementById("Polygon").addEventListener('click', handleBtnClick);
+document.getElementById("LineString").addEventListener('click', handleBtnClick);
+document.getElementById("Circle").addEventListener('click', handleBtnClick);
+
+addInteraction(document.getElementById("None"));
