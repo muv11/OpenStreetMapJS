@@ -8,6 +8,9 @@ const pointControl = new pointDrawControl;
 const lineControl = new lineStringDrawControl;
 const polygonControl = new polygonDrawControl;
 const circleControl = new circleDrawControl;
+const expJsonControl = new exportJsonControl;
+const impJsonControl = new importJsonControl;
+const saveControl = new saveDrawControl;
 
 mapControls = [
     new ol.control.ScaleLine(),
@@ -16,7 +19,9 @@ mapControls = [
     new ol.control.Rotate(),
     new ol.control.ZoomSlider(),
     new ol.control.ZoomToExtent(),
-
+    expJsonControl,
+    impJsonControl,
+    saveControl,
     noneControl,
     pointControl,
     lineControl,
