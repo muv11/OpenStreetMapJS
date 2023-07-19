@@ -1,5 +1,5 @@
 async function getContactMapFeatures() {
-    const response = await fetch('http://ipUrl/json/map.json');
+    const response = await fetch('http://' + ipUrl + '/json/map.json');
     return response.json().then((data) => {
         return data;
     });
