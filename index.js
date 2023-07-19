@@ -70,3 +70,32 @@ document.getElementById("LineString").addEventListener('click', handleBtnClick);
 document.getElementById("Circle").addEventListener('click', handleBtnClick);
 
 addInteraction(document.getElementById("None"));
+
+input.addEventListener("change", function () {
+    file = this.files[0];
+    addUserLayerFromJson(file).then();
+    hideOverlay();
+});
+
+dropArea.addEventListener("dragover", (event) => {
+    event.preventDefault();
+});
+
+dropArea.addEventListener("drop", (event) => {
+    event.preventDefault();
+    file = event.dataTransfer.files[0];
+    addUserLayerFromJson(file).then();
+    hideOverlay();
+});
+
+async function addUserLayerFromJson(file) {
+    let userGeoJson = await file.text();
+    let features = new ol.format.GeoJSON().readFeatures(userGeoJson, {
+        dataProjection: 'EPSG:4326',
+        featureProjection: 'EPSG:3857'
+    });
+    source.addFeatures(features);
+    vectorLayer = new ol.layer.Vector({
+        source: source
+    });
+}
